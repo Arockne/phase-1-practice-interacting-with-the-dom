@@ -1,11 +1,3 @@
-//pause button
-  //stops counter
-  //changes opacity of buttons to show they are not activated
-  //includes like, +, -, submit buttons
-  //changes to resume
-    //when pressed resumes all functionality
-//input field
-  //anything that gets submitted in this field get appended to the comments section
 
 function intervalCounter() {
   const counter = document.querySelector('#counter');
