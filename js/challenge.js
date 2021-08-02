@@ -37,6 +37,10 @@ function buttons() {
       interval = intervalCounter();
     }
   });
+
+  let form = document.querySelector('#comment-form');
+  form.addEventListener('submit', addComments)
+
 }
 
 function incrementCounter() {
@@ -100,6 +104,16 @@ function pauseApp(e) {
     pause.textContent = 'pause';
     notPause.forEach(btn => btn.disabled = false);
   }
+}
+
+function addComments(e) {
+  e.preventDefault();
+  const input = e.target.querySelector('input');
+  const comments = document.querySelector('#list');
+  const inputElement = document.createElement('p');
+  inputElement.textContent = input.value;
+  comments.appendChild(inputElement);
+  e.target.reset();
 }
 
 buttons();
