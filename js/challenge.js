@@ -54,8 +54,8 @@ function likeMessage() {
   const num = document.querySelector('#counter').textContent.trim();
 
   incrementLikes(num);
-  removeDuplicate(num)
-  
+  removeDuplicateLikes(num)
+
   const likeList = document.querySelector('.likes');
   const li = document.createElement('li');
   li.textContent = `${num} has been liked ${likeCount[num]} time`;
@@ -71,7 +71,7 @@ function incrementLikes(num) {
   }
 }
 
-function removeDuplicate(num) {
+function removeDuplicateLikes(num) {
   const messageElements = Array.from(document.querySelector('.likes').children);
   messageElements.forEach(message => {
     const messageNum = message.textContent.split(' ')[0];
