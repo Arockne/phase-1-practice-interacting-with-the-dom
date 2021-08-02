@@ -54,12 +54,8 @@ function likeMessage() {
   const num = document.querySelector('#counter').textContent.trim();
 
   incrementLikes(num);
-  removeDuplicateLikes(num)
-
-  const likeList = document.querySelector('.likes');
-  const li = document.createElement('li');
-  li.textContent = `${num} has been liked ${likeCount[num]} time`;
-  likeList.appendChild(li);
+  removeDuplicateLikes(num);
+  createAndAppendMessage(num);
 }
 
 
@@ -80,5 +76,15 @@ function removeDuplicateLikes(num) {
     }
   })
 }
+
+function createAndAppendMessage(num) {
+  const likeList = document.querySelector('.likes');
+  
+  const li = document.createElement('li');
+  li.textContent = `${num} has been liked ${likeCount[num]} time`;
+  
+  likeList.appendChild(li);
+}
+
 intervalCounter();
 buttons();
