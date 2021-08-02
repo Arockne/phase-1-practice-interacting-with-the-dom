@@ -1,14 +1,3 @@
-//counter**
-  //increments by one every second
-//+- butttons increment or decrement the counter**
-//the like button
-  //appends a list element like so:
-    //# has been liked numTimes time
-    //#
-      //the current counter number
-    //numTimes
-      //number that get incremented a certain amount of times depending on how many times the like button was pressed on it
-      //also gets appended underneath buttons
 //pause button
   //stops counter
   //changes opacity of buttons to show they are not activated
@@ -18,7 +7,6 @@
 //input field
   //anything that gets submitted in this field get appended to the comments section
 
-//implement updateCounter
 function intervalCounter() {
   const counter = document.querySelector('#counter');
   return setInterval(() => {
@@ -27,6 +15,7 @@ function intervalCounter() {
 }
 
 function buttons() {
+  let interval = intervalCounter();
   const minus = document.querySelector('#minus');
   minus.addEventListener('click', decrementCounter);
   
@@ -35,6 +24,19 @@ function buttons() {
   
   const like = document.querySelector('#heart');
   like.addEventListener('click', likeMessage);
+  
+  let paused = false;
+  const pause = document.querySelector('#pause');
+  pause.addEventListener('click', e => {
+    pauseApp()
+    if (!paused) {
+      paused = true;
+      clearInterval(interval);
+    } else {
+      paused = false;
+      interval = intervalCounter();
+    }
+  });
 }
 
 function incrementCounter() {
@@ -86,5 +88,18 @@ function createAndAppendMessage(num) {
   likeList.appendChild(li);
 }
 
-intervalCounter();
+function pauseApp(e) {
+  const pause = document.querySelector('#pause');
+  const notPause = Array.from(document.querySelectorAll('button')).filter(btn => btn.id !== 'pause');
+  const currentText = pause.textContent.trim();
+  if (currentText === 'pause') {
+    pause.textContent = 'resume';
+    notPause.forEach(btn => btn.disabled = true);    
+  }
+  if (currentText === 'resume') {
+    pause.textContent = 'pause';
+    notPause.forEach(btn => btn.disabled = false);
+  }
+}
+
 buttons();
