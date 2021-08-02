@@ -32,7 +32,7 @@ function buttons() {
   
   const plus = document.querySelector('#plus');
   plus.addEventListener('click', incrementCounter);
-
+  
   const like = document.querySelector('#heart');
   like.addEventListener('click', likeMessage);
 }
@@ -48,17 +48,20 @@ function decrementCounter() {
 }
 
 
-//somehow I need to associate the amount of likes for a current number
+const likeCount = {};
+
 function likeMessage() {
   const num = document.querySelector('#counter').textContent.trim();
+
   incrementLikes(num);
+  removeDuplicate(num)
+  
   const likeList = document.querySelector('.likes');
   const li = document.createElement('li');
   li.textContent = `${num} has been liked ${likeCount[num]} time`;
   likeList.appendChild(li);
 }
 
-const likeCount = {};
 
 function incrementLikes(num) {
   if (!likeCount[num]) {
@@ -68,5 +71,14 @@ function incrementLikes(num) {
   }
 }
 
+function removeDuplicate(num) {
+  const messageElements = Array.from(document.querySelector('.likes').children);
+  messageElements.forEach(message => {
+    const messageNum = message.textContent.split(' ')[0];
+    if (messageNum === num) {
+      message.remove();
+    }
+  })
+}
 intervalCounter();
 buttons();
