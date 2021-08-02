@@ -25,3 +25,23 @@ function intervalCounter() {
     counter.textContent = Number(counter.textContent.trim()) + 1;
   }, 1000)
 }
+
+function buttons() {
+  const minus = document.querySelector('#minus');
+  minus.addEventListener('click', decrementCounter);
+  
+  const plus = document.querySelector('#plus');
+  plus.addEventListener('click', incrementCounter);
+}
+
+function incrementCounter() {
+  const counter = document.querySelector('#counter');
+  counter.textContent = Number(counter.textContent.trim()) + 1;
+}
+
+function decrementCounter() {
+  const counter = document.querySelector('#counter');
+  counter.textContent = Number(counter.textContent.trim()) - 1;
+}
+intervalCounter();
+buttons();
